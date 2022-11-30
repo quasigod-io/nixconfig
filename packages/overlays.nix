@@ -1,4 +1,8 @@
-inputs: _: super: {
+hyprland: _: super: 
+let
+  
+in
+{
   discord-openasar = super.discord.override { 
     nss = super.nss_latest; withOpenASAR = true;
   };
@@ -10,12 +14,14 @@ inputs: _: super: {
     mimeTypes = [ "text/plain" "inode/directory" ];
     categories = [ "Utility" "TextEditor" "Development" ];
   };
-  hyprland-hidpi = super.symlinkJoin {
-    name = "hyprland-hidpi";
-    paths = [ inputs.hyprland.packages.${super.system}.hyprland ];
-    buildInputs = [ super.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/Hyprland --set GDK_SCALE 2 --set XCURSOR_SIZE 64
-    '';
-  };
+  # hyprland-hidpi = super.symlinkJoin {
+  #   name = "hyprland-hidpi";
+  #   # paths = [ hyprland.packages.${super.system}.default ];
+  #   paths = [ super.hyprland ];
+  #   buildInputs = [ super.makeWrapper ];
+  #   postBuild = ''
+  #     wrapProgram $out/bin/Hyprland --set GDK_SCALE 2 --set XCURSOR_SIZE 64
+  #   '';
+  # };
+  hyprland-nvidia = super.hyprland.override {nvidiaPatches = true;};
 }

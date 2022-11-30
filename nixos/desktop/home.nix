@@ -5,6 +5,7 @@
       ../home.nix
       ../../modules/shell/desktop
       ../../modules/i3/config
+      ../../modules/hyprland/config-desktop
     ];
 
   xsession.initExtra = ''

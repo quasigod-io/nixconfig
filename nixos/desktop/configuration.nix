@@ -6,6 +6,7 @@
       ../../packages/nixos/desktop
       ../../modules/vfio
       ../../modules/i3
+      ../../modules/hyprland
     ];
 
   networking = {
@@ -17,7 +18,7 @@
   };
 
   boot = {
-    kernelParams = [ "nomodeset" ];
+    # kernelParams = [ "nomodeset" ];
     extraModprobeConfig = "options nvidia_drm modeset=1";
     # Setting resolution manually because nvidia
     loader.grub = {
@@ -27,14 +28,15 @@
   };
 
   # Display shiz
+  programs.hyprland.enable = true;
   services.xserver = {
-    enable = true;
+    enable = false;
     videoDrivers = [ "nvidia" ];
-    windowManager.i3.enable = true; # Configured by ../../modules/i3 import
+    # windowManager.i3.enable = true; # Configured by ../../modules/i3 import
     displayManager = {
       setupCommands = "xrandr --output DP-4 --primary --mode 1920x1080 --rate 240 --output HDMI-0 --left-of DP-4";
       gdm = {
-        enable = true;
+        enable = false;
         wayland = false;
       };
     };

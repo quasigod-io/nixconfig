@@ -4,9 +4,25 @@
 # Nvidia variable can be set for Nvidia gpu compatibility, do NOT set if not Nvidia
 
 { lib, config, pkgs, ... }:
+# let
+  # hyprland-nvidia-wrapped = pkgs.symlinkJoin {
+  #   name = "hyprland-nvidia";
+  #   # paths = [ (hyprland.packages.${super.system}.default.override { nvidiaPatches = true; }) ];
+  #   # paths = [ (super.hyprland.override { nvidiaPatches = true; }) ];
+  #   paths = [ pkgs.hyprland-nvidia ];
+  #   buildInputs = [ pkgs.makeWrapper ];
+  #   postBuild = ''
+  #     wrapProgram $out/bin/Hyprland --set LIBVA_DRIVER_NAME nvidia --set XDG_SESSION_TYPE wayland --set GBM_BACKEND nvidia-drm --set __GLX_VENDOR_LIBRARY_NAME nvidia --set WLR_NO_HARDWARE_CURSORS 1
+  #   '';
+  # };
+# in
 {
   config = lib.mkIf config.programs.hyprland.enable {
-    programs.hyprland.recommendedEnvironment = true;
+    programs.hyprland = {
+      # package = hyprland-nvidia-wrapped;
+      # package = pkgs.hyprland-nvidia;
+      recommendedEnvironment = true;
+    };
     services.xserver.displayManager.defaultSession = "hyprland";
     environment.systemPackages = with pkgs; [
       swaybg
@@ -66,19 +82,19 @@
     #   })
     # ];
   
-    # hardware.nvidia.modesetting.enable = true;
-    # environment.variables = {
-    #   LIBVA_DRIVER_NAME = "nvidia";
-  		# CLUTTER_BACKEND = "wayland";
-  		# XDG_SESSION_TYPE = "wayland";
-  		# QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-  		# MOZ_ENABLE_WAYLAND = "1";
-  		# GBM_BACKEND = "nvidia-drm";
-  		# __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  		# WLR_NO_HARDWARE_CURSORS = "1";
-  		# WLR_BACKEND = "vulkan";
-  		# QT_QPA_PLATFORM = "wayland";
-  		# GDK_BACKEND = "wayland";
-    # };
+    hardware.nvidia.modesetting.enable = true;
+    environment.variables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+  		CLUTTER_BACKEND = "wayland";
+  		XDG_SESSION_TYPE = "wayland";
+  		QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+  		MOZ_ENABLE_WAYLAND = "1";
+  		GBM_BACKEND = "nvidia-drm";
+  		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  		WLR_NO_HARDWARE_CURSORS = "1";
+  		WLR_BACKEND = "vulkan";
+  		QT_QPA_PLATFORM = "wayland";
+  		GDK_BACKEND = "wayland";
+    };
   };
 }
