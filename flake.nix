@@ -6,7 +6,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     nix-gaming.url = "github:fufexan/nix-gaming";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:michaelBelsanti/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

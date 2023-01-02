@@ -285,15 +285,15 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1672274925,
-        "narHash": "sha256-DpkuoGwEW92zj/3jWKLb1biF4whs9yIc+pQbg67gqGU=",
-        "owner": "nix-community",
+        "lastModified": 1672178330,
+        "narHash": "sha256-eP4XtNNVwHoMirMzju5WjsTIrLffRkwQH6k0w2wsE5Q=",
+        "owner": "michaelBelsanti",
         "repo": "home-manager",
-        "rev": "a993eac1065c6ce63a8d724b7bccf624d0e91ca2",
+        "rev": "221ae566522019e0086b0be719b2abf024bc2f4e",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "michaelBelsanti",
         "repo": "home-manager",
         "type": "github"
       }
